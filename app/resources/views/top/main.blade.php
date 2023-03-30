@@ -1,7 +1,7 @@
 @extends('common.header')
 @section('content')
 <main>
-    <div>aaa
+    <div>bbb
         <div>
             <div>
                 @foreach($posts as $post)
