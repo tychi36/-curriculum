@@ -1,57 +1,98 @@
-@extends('common.head')
-@section('header')
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">TITLE</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('search') }}">検索</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('top')}}">ホーム</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('post') }}">投稿</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('weightDetail_list') }}">進捗</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('profile') }}">マイページ</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                @if(Auth::check())
-                <div class="ml-2">
-                    <span class="my-navbar-item">{{ Auth::user()->name }}</span>
-                        /
-                        <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                    </form>
-                    <script>
-                        document.getElementById('logout').addEventListener('click', function(event) {
-                        event.preventDefault();
-                        document.getElementById('logout-form').submit();
-                        });
-                    </script>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="https://unpkg.com/sanitize.css/typography.css" rel="stylesheet"/>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+    <body>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">TITLE</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @if(Route::is('weightDetail_list','weightRegister','weightUpdate','weightLists_delete'))
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('weightDetail_list') }}">進捗一覧</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('weightRegister')}}">進捗入力</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('weightUpdate') }}">進捗編集</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('weightLists_delete') }}">目標リセット</a>
+                            </li>
+                        </ul>
                     @else
-                    <a class="my-navbar-item" href="{{ route('login') }}">ログイン</a>
-                        /
-                    <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('search') }}">検索</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('posts.create') }}">投稿</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('weightDetail_list') }}">進捗</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('users.show',Auth::id()) }}">マイページ</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    @endif
+                        @if(Auth::check())
+                        <div class="ml-2">
+                            <span class="my-navbar-item">{{ Auth::user()->name }}</span>
+                                /
+                                <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                            </form>
+                            <script>
+                                document.getElementById('logout').addEventListener('click', function(event) {
+                                event.preventDefault();
+                                document.getElementById('logout-form').submit();
+                                });
+                            </script>
+                            @else
+                            <a class="my-navbar-item" href="{{ route('login') }}">ログイン</a>
+                                /
+                            <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a>
+                        </div>
+                        @endif
+                    </div>
                 </div>
-                @endif
-            </div>
+            </nav>
         </div>
-    </nav>
-</div>
-@yield('content')
-@endsection
+        @yield('content')
+    </body>   
+</html>

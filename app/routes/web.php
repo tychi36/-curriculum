@@ -24,16 +24,18 @@ Route::group(['middleware' => 'auth'], function() {
 //DisplayControlloer
 Route::get('/search',[DisplayController::class, 'search'])->name('search');
 //UsersControlloer
-Route::get('/profile',[UsersController::class, 'show'])->name('profile');
+Route::resource('users','UsersController');
+// Route::get('/profile',[UsersController::class, 'show'])->name('profile');
 Route::get('/editprofile',[UsersController::class, 'edit'])->name('editProfile');
 Route::post('/editprofile_update/{post}',[UsersController::class, 'update'])->name('editProfile_update');
 //PostController
-Route::get('/',[PostsController::class, 'index'])->name('top');
-Route::get('/post',[PostsController::class, 'create'])->name('post');
-Route::post('/post_process',[PostsController::class, 'store'])->name('post_process');
-// Route::get('/post_detail',[PostsController::class, 'show'])->name('post_detail');
-Route::get('/post_detail_private',[PostsController::class, 'show'])->name('postDetail_private');
+//return redirectを指定しているときは下記の記述だけは必要。return viewであれば不要
+Route::get('/',[PostsController::class, 'index']);
+Route::resource('posts','PostsController');
 
+// Route::get('/post',[PostsController::class, 'create'])->name('post');
+// Route::post('/post_process',[PostsController::class, 'store'])->name('post_process');
+// Route::get('/post_detail/{post}',[PostsController::class, 'show'])->name('postDetail');
 //WeightMgmtsControlloer
 Route::get('/weightRegister',[WeightMgmtsController::class, 'create'])->name('weightRegister');
 Route::get('/weightUpdate',[WeightMgmtsController::class, 'edit'])->name('weightUpdate');

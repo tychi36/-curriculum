@@ -6,7 +6,7 @@
             <div>
                 @foreach($posts as $post)
                 <!-- ユーザー情報 メイン-->
-                <a href="">
+                <a href="{{ route('posts.show',$post['id']) }}">
                     <!-- 画像 -->
                     <img src="" alt="">
                     <!-- 名前 -->

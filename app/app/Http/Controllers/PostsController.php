@@ -17,8 +17,11 @@ class PostsController extends Controller
      */
     public function index()
     {
+        
         $post = new Post;
-        $posts = $post->join('users', 'posts.user_id', 'users.id')->get();
+        
+        $posts = $post->get();
+       
         return view('top.main',[
             'posts' => $posts,
         ]);
@@ -55,8 +58,6 @@ class PostsController extends Controller
         $post->save();
 
         return redirect('/');
-
-
     }
 
     /**
@@ -65,9 +66,11 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-        return view('post.postDetail_private');
+    public function show(Post $post)
+    {  
+        return view('post.postDetail',[
+            'post' => $post,
+        ]);
     }
 
     /**

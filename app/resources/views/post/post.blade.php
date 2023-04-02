@@ -12,7 +12,7 @@
         </div>
         @endif
     </div>
-    <form action="{{ route('post_process') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="" class="form-label">画像</label>
         <input type="file" name="image" class="form-control" value="{{ old('image') }}">

@@ -15,14 +15,12 @@
         <div>
         @foreach($posts as $post)
         <div class="card" style="width: 18rem;">
-            <a href="{{ route('postDetail_private') }}">
-                <img src="" class="card-img-top" alt="">
-                <div class="card-body">
-                    <img src="{{ asset($post->path) }}" alt="" class="card-img-top">
-                    <p class="card-text">{{ $post['text'] }}</p>
-                    <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
-                </div>
-            </a>
+            <img src="" class="card-img-top" alt="">
+            <div class="card-body">
+                <img src="{{ asset($post->path) }}" alt="" class="card-img-top">
+                <p class="card-text">{{ $post['text'] }}</p>
+                <a href="{{ route('posts.show',$post['id']) }}" class="btn btn-primary stretched-link">Go somewhere</a>
+            </div>
         </div>
         @endforeach
         </div>

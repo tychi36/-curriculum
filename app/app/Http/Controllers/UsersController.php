@@ -46,7 +46,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(User $user)
     {
         $post = new Post;
         $posts = $post->where('user_id',Auth::id())->get();
