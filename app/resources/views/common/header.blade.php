@@ -28,40 +28,32 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    @if(Route::is('weightDetail_list','weightRegister','weightUpdate','weightLists_delete'))
+                    @if(Route::is('weight_mgmts.index','weight_mgmts.create','weight_mgmts.show','weight_mgmts.edit ','weight_mgmts.destroy'))
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('weightDetail_list') }}">進捗一覧</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.index') }}">進捗一覧</a>
                             </li>
-                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('weightRegister')}}">進捗入力</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('weightUpdate') }}">進捗編集</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('weightLists_delete') }}">目標リセット</a>
-                            </li>
+
                         </ul>
                     @else
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('search') }}">検索</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('search') }}">検索</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('posts.create') }}">投稿</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('posts.create') }}">投稿</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('weightDetail_list') }}">進捗</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.index') }}">進捗</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('users.show',Auth::id()) }}">マイページ</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('users.show',Auth::id()) }}">マイページ</a>
                             </li>
                         </ul>
                         <form class="d-flex">

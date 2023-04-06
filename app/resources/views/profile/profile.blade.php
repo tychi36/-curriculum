@@ -2,10 +2,10 @@
 @section('content')
 <main>
     <div>
-        <div class="icon"><img src="{{ asset(Auth::user()->image) }}" alt=""></div>
+        <div class="icon"><img src="{{ asset(Auth::user()->image_path) }}" alt=""></div>
         <div class="profile">{{ Auth::user()->name }}</div>
         <textarea name="profile_text" id="" cols="30" rows="10">{{ Auth::user()->profile_text }}</textarea>
-        <a href="{{ route('editProfile') }}">プロフィールを編集</a>
+        <a href="{{ route('users.edit', Auth::id())}}">プロフィールを編集</a>
     </div>
     <div>
         <div>

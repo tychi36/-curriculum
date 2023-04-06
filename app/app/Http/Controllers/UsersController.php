@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
+
 class UsersController extends Controller
 {
     /**
@@ -71,20 +72,21 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $userData, Request $request)
+    public function update(user $user, Request $request)
     {
-        $userData->name = $request->name;
-        $userData->profile_text = $request->profile_text;
-        
+        $user->id = Auth::id();
+        $user->name = $request->name;
+        $user->profile_text = $request->profile_text;
+
+        if($request->file('image')){
         $dir = 'images';
         $file_name = $request->file('image')->getClientOriginalName();
         $request->file('image')->storeAs('public/' . $dir, $file_name);
+        $user->image_path = 'storage/' . $dir . '/' . $file_name;
+        }
 
-        $userData->path = 'storage/' . $dir . '/' . $file_name;
-        $userData->save();
-
-        return redirect('/profile');
-
+        $user->save();
+        return redirect(route('users.show',$user['id']));
     }
 
     /**
@@ -93,8 +95,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user)
     {
         //
+    }
+
+    public function violation($user){
+        dd($user);
+
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostData;
 use App\Post;
 use App\User;
+use App\Weight_mgmt;
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
@@ -19,11 +20,11 @@ class PostsController extends Controller
     {
         
         $post = new Post;
-        
         $posts = $post->get();
-       
+        $weight_mgmt = Weight_mgmt::where('user_id',Auth::id())->orderBy('date','desc')->first();
         return view('top.main',[
             'posts' => $posts,
+            'weight_mgmt' => $weight_mgmt,
         ]);
         
     }
@@ -51,13 +52,15 @@ class PostsController extends Controller
         $post->text = $request->text;
         
         $dir = 'images';
+        // dd($request);
         $file_name = $request->file('image')->getClientOriginalName();
         $request->file('image')->storeAs('public/' . $dir, $file_name);
         $post->image = $file_name;
         $post->path = 'storage/' . $dir . '/' . $file_name;
+
         $post->save();
 
-        return redirect('/');
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -67,9 +70,11 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
-    {  
+    {   
+        $user = User::where('id',$post['user_id'])->first();
         return view('post.postDetail',[
             'post' => $post,
+            'user' => $user,
         ]);
     }
 
@@ -79,9 +84,11 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('post.postEdit',[
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -91,9 +98,20 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Post $post, Request $request)
     {
-        //
+        $post->user_id = Auth::id();
+        $post->text = $request->text;
+        if($request->file('image')){
+            $dir = 'images';
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+
+            $post->path = 'storage/' . $dir . '/' . $file_name;
+        }
+        $post->save();
+        // return redirect(route('posts.index'));
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -102,8 +120,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($post)
     {
-        //
+        $posts = Post::find($post);
+        $posts->delete();
+        return redirect(route('posts.index'));
     }
 }
