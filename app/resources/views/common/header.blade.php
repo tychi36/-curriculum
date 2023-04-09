@@ -89,8 +89,9 @@
                                     <a class="nav-link active" aria-current="page" href="{{ route('users.show',Auth::id()) }}">マイページ</a>
                                 </li>
                             </ul>
-                            <form class="d-flex" method="GET" action="{{ route('search') }}">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="@if (isset($search)) {{ $search }} @endif">
+                            <form class="d-flex" action="{{ route('search') }}" method="get">
+                                @csrf
+                                <input class="form-control me-2" placeholder="Search" aria-label="Search" type="search" name="search" value="@if (isset($search)) {{ $search }} @endif">
                                 <button class="btn btn-outline-success" type="submit">Search</button>
                             </form>
                         @endif

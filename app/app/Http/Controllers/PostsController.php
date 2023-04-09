@@ -47,6 +47,7 @@ class PostsController extends Controller
      */
     public function store(PostData $request)
     {
+        
         $post = new Post;
         $post->user_id = Auth::id();
         $post->text = $request->text;
