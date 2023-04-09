@@ -21,10 +21,10 @@ class PostsController extends Controller
         
         $post = new Post;
         $posts = $post->get();
-        $weight_mgmt = Weight_mgmt::where('user_id',Auth::id())->orderBy('date','desc')->first();
+        // $weight_mgmt = Weight_mgmt::where('user_id',Auth::id())->orderBy('date','desc')->first();
         return view('top.main',[
             'posts' => $posts,
-            'weight_mgmt' => $weight_mgmt,
+            // 'weight_mgmt' => $weight_mgmt,
         ]);
         
     }
@@ -106,7 +106,6 @@ class PostsController extends Controller
             $dir = 'images';
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dir, $file_name);
-
             $post->path = 'storage/' . $dir . '/' . $file_name;
         }
         $post->save();
