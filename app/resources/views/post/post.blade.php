@@ -1,6 +1,6 @@
 @extends('common.header')
 @section('content')
-<main>
+<main class="w-100">
     <div>
         @if($errors->any())
         <div>

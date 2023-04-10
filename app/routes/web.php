@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth','can:user'], function () {
     //DisplayControlloer
     Route::get('/search',[DisplayController::class, 'search'])->name('search');
     //UsersControlloer
-    Route::get('/violation',[UsersController::class, 'violation'])->name('vioration');
+    Route::get('/violation{Post}',[UsersController::class, 'violation'])->name('violation');
     Route::resource('users','UsersController');
     //Post
     //return redirectを指定しているときは下記の記述だけは必要。return viewであれば不要
@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth','can:user'], function () {
     Route::resource('weight_goals', 'WeightGoalsController');
     //like
     Route::post('ajaxlike', 'PostsController@ajaxlike')->name('posts.ajaxlike');
+
 });
 //権限わけのためのルート
 Route::get('/',[HomeController::class, 'index']);

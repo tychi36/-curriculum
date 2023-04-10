@@ -45,26 +45,22 @@
 </main>
 @elsecan('user')
 <main>
-    <div>
-        <div>
-            <div>
-                @foreach($posts as $post)
-                <!-- ユーザー情報 メイン-->
-                <a href="{{ route('posts.show',$post['id']) }}">
-                    <!-- 画像 -->
-                    <img src="" alt="">
-                    <!-- 名前 -->
-                    <span>{{ $post['name'] }}</span>
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ asset($post->path) }}" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <p class="card-text">{{ $post['text'] }}</p>
-                        </div>
-                    </div>
-                </a>
-                @endforeach
+    <div class="text-center mx-auto">
+        @foreach($posts as $post)
+        <!-- ユーザー情報 メイン-->
+        <a href="{{ route('posts.show',$post['id']) }}">
+            <!-- 画像 -->
+            <img src="" alt="">
+            <!-- 名前 -->
+            <span>{{ $post['name'] }}</span>
+            <div class="card text-center d-inline-block w-50">
+                <img src="{{ asset($post->path) }}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <p class="card-text">{{ $post['text'] }}</p>
+                </div>
             </div>
-        </div>                          
+        </a>
+        @endforeach
     </div>
 </main>
 @endcan

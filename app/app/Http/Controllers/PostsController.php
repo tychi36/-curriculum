@@ -23,7 +23,7 @@ class PostsController extends Controller
         $post = new Post;
         $posts = $post->get();
         // $weight_mgmt = Weight_mgmt::where('user_id',Auth::id())->orderBy('date','desc')->first();
-        
+
         // ユーザの投稿の一覧を作成日時の降順で取得
         //withCount('テーブル名')とすることで、リレーションの数も取得できます。
         // $posts = Post::withCount('likes')->orderBy('created_at', 'desc')->paginate(10);
@@ -129,9 +129,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($post)
+    public function destroy()
     {
-        $posts = Post::find($post);
+        $posts = Post::find();
         $posts->delete();
         return redirect(route('posts.index'));
     }

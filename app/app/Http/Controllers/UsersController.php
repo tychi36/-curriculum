@@ -101,7 +101,12 @@ class UsersController extends Controller
     }
 
     public function violation($user){
-        dd($user);
+        $userData = User::find($user);
+        $violatin = $userData->violation;
+        $report = $violatin+1;
+        $userData->violation = $report;
+        $userData->save();
+        return redirect()->route('posts.index');
 
     }
 }

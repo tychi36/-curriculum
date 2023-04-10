@@ -12,7 +12,7 @@
             </form>
             @else
             <button>いいね</button>
-            <button><a href="">違反報告</a></button>
+            <button onclick="return confirm('違反報告しますか？')"><a href="{{ route('violation',['Post' => $post['user_id']]) }}">違反報告</a></button>
             @endif
             <!-- 画像 -->
             <img src="{{ asset($user->image_path) }}" alt="">

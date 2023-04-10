@@ -20,14 +20,15 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
     <body>
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">TITLE</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    @can('admin')
+        <div class="d-flex">
+            <div class="text-center w-50">
+                <h1 class="fs-1"><a href="#">TITLE</a></h1>
+                <nav class="d-flex flex-column navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        @can('admin')
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item">
@@ -61,31 +62,31 @@
                                     /
                                 <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a>
                             </div>
-                            @endif
+                        @endif
+            </div>
                     @elsecan('user')
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="d-flex flex-column collapse navbar-collapse" id="navbarSupportedContent">
                         @if(Route::is('weight_mgmts.index','weight_mgmts.create','weight_mgmts.show','weight_mgmts.edit ','weight_mgmts.destroy'))
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <ul class="d-flex flex-column navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
                                 </li>
                                 <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.index') }}">進捗一覧</a>
                                 </li>
-
                             </ul>
                         @else
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
+                            <ul class="d-flex flex-column navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item mb-2">
                                     <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a class="nav-link active" aria-current="page" href="{{ route('posts.create') }}">投稿</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.index') }}">進捗</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item mb-2">
                                     <a class="nav-link active" aria-current="page" href="{{ route('users.show',Auth::id()) }}">マイページ</a>
                                 </li>
                             </ul>
@@ -114,6 +115,33 @@
                                     /
                                 <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a>
                             </div>
+                            @endif
+                            @if(Route::is('weight_mgmts.index','weight_mgmts.create','weight_mgmts.show','weight_mgmts.edit ','weight_mgmts.destroy'))
+                            <ul class="d-flex flex-column navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.create')}}">入力</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.edit',$dairy['id']) }}">編集</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form action="{{ route('weight_mgmts.destroy',$dairy['id']) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form action="{{ route('weight_goals.destroy',$goal['id']) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" onclick="return confirm('目標をリセットしますか？')">目標リセット</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ route('weight_goals.edit',$goal['id']) }}">目標編集</a>
+                                </li>
+                            </ul>
                             @endif
                         </div>
                     @endcan
