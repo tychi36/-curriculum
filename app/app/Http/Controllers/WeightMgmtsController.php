@@ -22,7 +22,7 @@ class WeightMgmtsController extends Controller
             //目標があるかないか判定
             $data = DB::table('weight_goals')->exists();
             if($data){
-                $mgmt = DB::table('weight_mgmts')->exists();
+                $mgmt = DB::table('weight_mgmts')->where('user_id',Auth::id())->exists();
                 //進捗のデータがあるかないか
                 if($mgmt){
                     $dairy = Weight_mgmt::where('user_id',Auth::id())->orderBy('date','desc')->first();

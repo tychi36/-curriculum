@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth','can:user'], function () {
     Route::resource('weight_mgmts', 'WeightMgmtsController');
     //weight_goal
     Route::resource('weight_goals', 'WeightGoalsController');
+    //like
+    Route::post('ajaxlike', 'PostsController@ajaxlike')->name('posts.ajaxlike');
 });
 //権限わけのためのルート
 Route::get('/',[HomeController::class, 'index']);

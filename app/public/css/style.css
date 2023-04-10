@@ -11,3 +11,6 @@ body{
 main{
     height: 100%;
 }
+.loved i {
+    color: red !important;
+}
