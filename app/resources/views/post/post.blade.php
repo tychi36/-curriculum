@@ -12,13 +12,13 @@
         </div>
         @endif
     </div>
-    <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+    <form class="form" action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <label for="" class="form-label">画像</label>
-        <input type="file" name="image" class="form-control" value="{{ old('image') }}">
-        <label for="" class="form-label">テキスト</label>
-        <textarea name="text" class="form-control" id="" cols="30" rows="10" value="{{ old('text') }}" placeholder="文章を入れてください"></textarea>
-        <button>シェア</button>
+        <label for="">画像</label>
+        <input type="file" name="image" value="{{ old('image') }}">
+        <label for="">テキスト</label>
+        <textarea name="text" id="" cols="30" rows="10" value="{{ old('text') }}" placeholder="文章を入れてください"></textarea>
+        <button class="button">シェア</button>
     </form>
 </main>
 @endsection

@@ -2,7 +2,7 @@
 @section('content')
 <main>
     <h3>進捗登録</h3>
-    <form action="{{ route('weight_mgmts.store') }}" method="post">
+    <form class="form" action="{{ route('weight_mgmts.store') }}" method="post">
         @csrf
         <input type="date" name="date">
         <input type="number" step="0.1" name="weight">

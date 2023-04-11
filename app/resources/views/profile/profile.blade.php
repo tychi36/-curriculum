@@ -1,28 +1,29 @@
 @extends('common.header')
 @section('content')
 <main>
-    <div>
-        <div class="icon"><img class="rounded-circle w-50" src="{{ asset(Auth::user()->image_path) }}" alt=""></div>
-        <div class="profile">{{ Auth::user()->name }}</div>
-        <textarea name="profile_text" id="" cols="30" rows="3">{{ Auth::user()->profile_text }}</textarea>
-        <a href="{{ route('users.edit', Auth::id())}}">プロフィールを編集</a>
+    <div class="profile_container d-flex">
+        <div class="icon"><img class="rounded-circle w-75" src="{{ asset(Auth::user()->image_path) }}" alt=""></div>
+       <div>
+            <div class="name_container">
+                <a class="edit_profile" href="{{ route('users.edit', Auth::id())}}">プロフィールを編集</a>
+                <div class="name">{{ Auth::user()->name }}</div>
+            </div>
+        <p name="profile_text" class="profile_text">{{ Auth::user()->profile_text }}</p>
+       </div>
     </div>
     <div>
-        <div>
-            <button class="posts-list">投稿一覧</button>
-            <button class="likes-list">いいね一覧</button>
+        <div class="button_container">
+            <button class="posts_button">投稿一覧</button>
+            <button class="likes_button">いいね一覧</button>
         </div>
-        <div>
-        @foreach($posts as $post)
-        <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="">
-            <div class="card-body">
-                <img src="{{ asset($post->path) }}" alt="" class="card-img-top">
-                <p class="card-text">{{ $post['text'] }}</p>
-                <a href="{{ route('posts.show',$post['id']) }}" class="btn btn-primary stretched-link">Go somewhere</a>
-            </div>
-        </div>
-        @endforeach
+        <div class="post_list">
+            @foreach($posts as $post)
+                <div class="post">
+                    <a href="{{ route('posts.show',$post['id']) }}">
+                        <img src="{{ asset($post->path) }}" alt="">
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 </main>

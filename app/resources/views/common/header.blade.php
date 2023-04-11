@@ -17,17 +17,14 @@
     <!-- Styles -->
     <link href="https://unpkg.com/sanitize.css/typography.css" rel="stylesheet"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
     <body>
-        <div class="d-flex">
-            <div class="text-center w-50">
-                <h1 class="fs-1"><a href="#">TITLE</a></h1>
-                <nav class="d-flex flex-column navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+        <div class="container">
+            <div class="sidebar">
+                <h1 class="fs-1 title"><a href="#">TITLE</a></h1>
+                <nav class="">
+                    <div class="">
                         @can('admin')
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -65,8 +62,8 @@
                         @endif
             </div>
                     @elsecan('user')
-                        <div class="d-flex flex-column collapse navbar-collapse" id="navbarSupportedContent">
-                        @if(Route::is('weight_mgmts.index','weight_mgmts.create','weight_mgmts.show','weight_mgmts.edit ','weight_mgmts.destroy'))
+                        <div class="" id="navbarSupportedContent">
+                            @if(Route::is('weight_mgmts.index','weight_mgmts.create','weight_mgmts.show','weight_mgmts.edit ','weight_mgmts.destroy'))
                             <ul class="d-flex flex-column navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
@@ -75,7 +72,7 @@
                                 <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.index') }}">進捗一覧</a>
                                 </li>
                             </ul>
-                        @else
+                            @else
                             <ul class="d-flex flex-column navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item mb-2">
                                     <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">ホーム</a>
@@ -92,10 +89,10 @@
                             </ul>
                             <form class="d-flex" action="{{ route('search') }}" method="get">
                                 @csrf
-                                <input class="form-control me-2" placeholder="Search" aria-label="Search" type="search" name="search" value="@if (isset($search)) {{ $search }} @endif">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                <input class="form-control me-2 width_reset" placeholder="Search" aria-label="Search" type="search" name="search" value="@if (isset($search)) {{ $search }} @endif">
                             </form>
-                        @endif
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                            @endif
                             @if(Auth::check())
                             <div class="ml-2">
                                 <span class="my-navbar-item">{{ Auth::user()->name }}</span>
@@ -122,24 +119,24 @@
                                     <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.create')}}">入力</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ route('weight_mgmts.edit',$dairy['id']) }}">編集</a>
+                                    <a class="nav-link active" aria-current="page" href="">編集</a>
                                 </li>
                                 <li class="nav-item">
-                                    <form action="{{ route('weight_mgmts.destroy',$dairy['id']) }}" method="post">
+                                    <form action="" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
                                     </form>
                                 </li>
                                 <li class="nav-item">
-                                    <form action="{{ route('weight_goals.destroy',$goal['id']) }}" method="post">
+                                    <form action="" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" onclick="return confirm('目標をリセットしますか？')">目標リセット</button>
                                     </form>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ route('weight_goals.edit',$goal['id']) }}">目標編集</a>
+                                    <a class="nav-link active" aria-current="page" href="">目標編集</a>
                                 </li>
                             </ul>
                             @endif

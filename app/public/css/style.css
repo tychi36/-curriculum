@@ -10,7 +10,132 @@ body{
 }
 main{
     height: 100%;
+    width: 100%;
+    margin-top: 30px;
+}
+a{
+    color: #000;
+}
+a:hover{
+    text-decoration: none;
 }
 .loved i {
     color: red !important;
+}
+
+/* メインページ */
+.sidebar{
+    margin-right: 50px;
+    margin-top: 30px;
+}
+.profile_img{
+    width: 50px;
+    margin-right: 5px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+.username{
+    font-size: 15px;
+}
+.user_link a{
+    display: flex;
+    align-items: center;
+}
+.form-control.me-2.width_reset{
+    width: auto;
+}
+.container{
+    display: flex;
+}
+.img_wrap{
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+}
+.image-wrap img {
+    max-width: 100px;
+    height: 300px;
+    object-fit: cover; /* width, heightといっしょに使います */
+}
+.post_container{
+    margin-bottom: 30px;
+    border: 0.5px solid #666;
+    border-radius: 5px;
+}
+.post_text{
+    text-align: right;
+}
+
+/* マイページ */
+.profile_container{
+    margin-bottom: 10px;
+    align-items: center;
+}
+.name{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.profile_text{
+   outline: none;
+}
+.post{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.post_list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.button_container{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.posts_button,.likes_button{
+    padding: 5px;
+}
+.posts_button{
+    margin-right: 10px;
+}
+.edit_profile{
+    background: #FF9966;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+/* マイページ編集 */
+.form{
+    border: #000 1px solid;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 15px 10px 5px #666;
+}
+.form *{
+    margin-bottom: 10px;
+}
+.form *:last-child{
+    margin-bottom: 0px;
+}
+/* .form input, .form textarea{
+
+} */
+.button{
+    border: 2px solid #ced4da;
+}
+/* 体重管理 */
+.weight_contents{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+}
+.weight_contents_container .weight_contents{
+    width: 50%;
+}
+.weight_list *{
+    height: 150px;
+    margin-bottom: 20px;
 }

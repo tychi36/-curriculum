@@ -44,24 +44,28 @@
     </table>
 </main>
 @elsecan('user')
-<main>
-    <div class="text-center mx-auto">
+<main class="">
         @foreach($posts as $post)
+        <div class="post_container">
         <!-- ユーザー情報 メイン-->
-        <a href="{{ route('posts.show',$post['id']) }}">
-            <!-- 画像 -->
-            <img src="" alt="">
-            <!-- 名前 -->
-            <span>{{ $post['name'] }}</span>
-            <div class="card text-center d-inline-block w-50">
-                <img src="{{ asset($post->path) }}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <p class="card-text">{{ $post['text'] }}</p>
-                </div>
+            <div class="user_link">
+                <a href="{{ route('users.show',Auth::id()) }}">
+                        <!-- 画像 -->
+                        <img class="profile_img" src="{{ asset(Auth::user()->image_path) }}" alt="">
+                        <!-- 名前 -->
+                        <span class="username">{{ Auth::user()->name }}</span>
+                </a>
             </div>
-        </a>
+            <a href="{{ route('posts.show',$post['id']) }}">
+                <div class="img_wrap">
+                    <img src="{{ asset($post->path) }}" alt="">
+                    <div class="">
+                        <p class="post_text">{{ $post['text'] }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
         @endforeach
-    </div>
 </main>
 @endcan
 @endsection

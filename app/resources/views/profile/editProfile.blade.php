@@ -1,7 +1,7 @@
 @extends('common.header')
 @section('content')
 <main>
-    <form action="{{ route('users.update',Auth::id()) }}" method="post" enctype="multipart/form-data">
+    <form class="form" action="{{ route('users.update',Auth::id()) }}" method="post" enctype="multipart/form-data">
         @method('put')
         @csrf
         <input type="file" name="image" value="{{ asset(Auth::user()->image) }}">
