@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
-use App\User;
-use App\Http\Requests\MypageData;
-use Illuminate\Support\Facades\Auth;
 
-
-class UsersController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -48,11 +43,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        $post = new Post;
-        $posts = $post->where('user_id',Auth::id())->get();
-        return view('profile.profile',['posts' => $posts,]);
+        //
     }
 
     /**
@@ -61,9 +54,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('profile.editProfile');
+        //
     }
 
     /**
@@ -73,21 +66,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user, MypageData $request)
+    public function update(Request $request, $id)
     {
-        $user->id = Auth::id();
-        $user->name = $request->name;
-        $user->profile_text = $request->profile_text;
-
-        if($request->file('image')){
-        $dir = 'images';
-        $file_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
-        $user->image_path = 'storage/' . $dir . '/' . $file_name;
-        }
-
-        $user->save();
-        return redirect(route('users.show',$user['id']));
+        //
     }
 
     /**
@@ -96,18 +77,8 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user)
+    public function destroy($id)
     {
         //
-    }
-
-    public function violation($user){
-        $userData = User::find($user);
-        $violatin = $userData->violation;
-        $report = $violatin+1;
-        $userData->violation = $report;
-        $userData->save();
-        return redirect()->route('posts.index');
-
     }
 }

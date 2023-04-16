@@ -1,6 +1,17 @@
 @extends('common.header')
 @section('content')
 <main>
+    <div>
+        @if($errors->any())
+        <div>
+            <ul>
+                @foreach($errors->all() as $message)
+                <li>{{ $message }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+    </div>
     <form class="form" action="{{ route('users.update',Auth::id()) }}" method="post" enctype="multipart/form-data">
         @method('put')
         @csrf

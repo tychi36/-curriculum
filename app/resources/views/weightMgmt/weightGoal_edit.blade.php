@@ -2,6 +2,29 @@
 @section('content')
 <main>
     <h3>目標編集</h3>
+    <ul class="nav-menu">
+        <li class="">
+            <a class="" aria-current="page" href="{{ route('weight_mgmts.create')}}">入力</a>
+        </li>
+        <li class="">
+            <form action="" method="post">
+                @csrf
+                @method('delete')
+                <button class="button_none" type="submit" onclick="return confirm('目標をリセットしますか？')">目標リセット</button>
+            </form>
+        </li>
+    </ul>
+    <div>
+        @if($errors->any())
+        <div>
+            <ul>
+                @foreach($errors->all() as $message)
+                <li>{{ $message }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+    </div>
     <form class= "form"  action="{{ route('weight_goals.update',$goal['id']) }}" method="post">
         @method('put')
         @csrf

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Weight_Mgmts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Weight_mgmt;
@@ -67,7 +68,7 @@ class WeightMgmtsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Weight_Mgmts $request)
     {
         $weight = new Weight_mgmt;
         $weight->user_id = Auth::id();
@@ -126,7 +127,7 @@ class WeightMgmtsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Weight_mgmt $weight_mgmt)
+    public function update(Weight_Mgmts $request, Weight_mgmt $weight_mgmt)
     {
         $weight_mgmt->date = $request->date;
         $weight_mgmt->weight = $request->weight;

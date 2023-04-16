@@ -17,11 +17,11 @@ class HostsController extends Controller
     public function index()
     {
         $user = new User;
-        $users = $user->get();
-        
+        $users = $user->where('role', [11,100])->orderBy('violation','desc')->get();
+        // dd($users);
 
-        return view('top.main',[
-            'users' =>$users,
+        return view('host.host_userSearch',[
+            'users' => $users,
         ]);
         // $post = new Post;
         // $posts = $post->where('user_id',Auth::id())->get();
@@ -55,9 +55,15 @@ class HostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user)
     {
-        //
+        $users = User::where('id',$user)->first();
+        $posts = Post::where('user_id',1)->first();
+
+        return view('post.postDetail',[
+            'user' => $users,
+            'post' => $posts,
+        ]);
     }
 
     /**

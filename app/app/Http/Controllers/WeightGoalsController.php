@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Weight_Goals;
 use App\Weight_goal;
 use App\Weight_mgmt;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,7 @@ class WeightGoalsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Weight_Goals $request)
     {
         $goal = new Weight_goal;
         $goal->user_id = Auth::id();
@@ -80,7 +81,7 @@ class WeightGoalsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Weight_goal $weight_goal)
+    public function update(Weight_Goals $request, Weight_goal $weight_goal)
     {
        $weight_goal->weight = $request->weight;
        $weight_goal->goal = $request->goal;

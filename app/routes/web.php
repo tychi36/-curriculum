@@ -33,12 +33,13 @@ Route::group(['middleware' => 'auth','can:user'], function () {
     //Post
     //return redirectを指定しているときは下記の記述だけは必要。return viewであれば不要
     Route::resource('posts','PostsController');
+    Route::resource('comments','CommentsController');
     //weight_mgmt
     Route::resource('weight_mgmts', 'WeightMgmtsController');
     //weight_goal
     Route::resource('weight_goals', 'WeightGoalsController');
     //like
-    Route::post('ajaxlike', 'PostsController@ajaxlike')->name('posts.ajaxlike');
+    Route::post('/posts_like', 'PostsController@ajaxlike')->name('posts.ajaxlike');
 
 });
 //権限わけのためのルート

@@ -5,7 +5,11 @@
         <div class="icon"><img class="rounded-circle w-75" src="{{ asset(Auth::user()->image_path) }}" alt=""></div>
        <div>
             <div class="name_container">
+                @if(Route::is('posts.show'))
                 <a class="edit_profile" href="{{ route('users.edit', Auth::id())}}">プロフィールを編集</a>
+                @else
+                <a class="edit_profile" href="{{ route('users.edit', Auth::id())}}">一覧へ戻る</a>
+                @endif
                 <div class="name">{{ Auth::user()->name }}</div>
             </div>
         <p name="profile_text" class="profile_text">{{ Auth::user()->profile_text }}</p>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Weight_registerData extends FormRequest
+class MypageData extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class Weight_registerData extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required|date',
-            'weight' => 'required|numeric',
-            'commet' => 'required|string',
-
+            'name' => 'required|string',
+            'image' => 'image',
+            'profile_text' => 'string'
         ];
     }
 }

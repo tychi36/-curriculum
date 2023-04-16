@@ -24,8 +24,8 @@ class PostData extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'required|string',
             'image' => 'required|image',
+            'text' => 'required|string',
         ];
     }
 }
