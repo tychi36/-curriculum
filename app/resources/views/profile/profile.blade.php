@@ -23,7 +23,8 @@
         <div class="post_list" id="post">
             @foreach($posts as $post)
                 <div class="">
-                    <a href="{{ route('posts.show',$post['id']) }}">
+                    
+                    <a href="{{ route('posts.show', $post['id']) }}">
                         <img src="{{ asset($post->path) }}" alt="">
                     </a>
                 </div>

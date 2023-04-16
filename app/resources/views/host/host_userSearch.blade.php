@@ -21,7 +21,13 @@
                 <td>{{ $user['profile_text'] }}</td>
                 <td>{{ $user['violation'] }}</td>
                 <td><a href="{{ route('hosts.show',$user['id']) }}">ユーザーページへ</a></td>
-                <td><a href="">削除</a></td>
+                <td>
+                    <form action="{{ route('hosts.destroy',$user['id']) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button class="button_none" type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
            

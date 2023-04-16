@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+        @if(Route::is('post.show'))
         <div class="comment_container">
             @foreach($comments as $comment)
             <div class="user_info">
@@ -66,6 +67,7 @@
                 <button>送信</button>
             </form>
         </div>
+        @endif
     </div>
 </main>
 @endsection

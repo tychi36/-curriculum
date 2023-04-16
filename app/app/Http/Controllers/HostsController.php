@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class HostsController extends Controller
@@ -57,12 +58,15 @@ class HostsController extends Controller
      */
     public function show($user)
     {
+        
         $users = User::where('id',$user)->first();
-        $posts = Post::where('user_id',1)->first();
+        $posts = Post::where('user_id',$user)->first();
+        // dd($posts);
 
-        return view('post.postDetail',[
+        return view('profile.profile',[
             'user' => $users,
-            'post' => $posts,
+            'posts' => $posts,
+            // 'comments' => $comments,
         ]);
     }
 
@@ -97,6 +101,9 @@ class HostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id)
+        $users = User::find($id);
+        $users->delete();
+        return redirect(route('hosts.index'));
     }
 }
