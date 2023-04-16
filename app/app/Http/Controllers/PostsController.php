@@ -7,6 +7,7 @@ use App\Http\Requests\PostData;
 use App\Post;
 use App\User;
 use App\Like;
+use App\Comment;
 use App\Weight_mgmt;
 use Illuminate\Support\Facades\Auth;
 
@@ -81,9 +82,12 @@ class PostsController extends Controller
     public function show(Post $post)
     {   
         $user = User::where('id',$post['user_id'])->first();
+        $comments = Comment::where('post_id', $post['id'])->get();
+        // dd($comments);
         return view('post.postDetail',[
             'post' => $post,
             'user' => $user,
+            'comments' => $comments,
         ]);
     }
 

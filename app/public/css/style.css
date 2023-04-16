@@ -96,6 +96,10 @@ a:hover{
     display: flex;
     flex-wrap: wrap;
 }
+.like_list{
+    display: flex;
+    flex-wrap: wrap;
+}
 .button_container{
     margin-bottom: 20px;
     text-align: center;
@@ -115,6 +119,12 @@ a:hover{
 }
 .violarion-button{
     margin: 10px;
+}
+.hidden{
+    display: none;
+}
+.open{
+    display: block;
 }
 /* マイページ編集 */
 .form{

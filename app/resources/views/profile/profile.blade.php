@@ -20,11 +20,20 @@
             <button class="posts_button">投稿一覧</button>
             <button class="likes_button">いいね一覧</button>
         </div>
-        <div class="post_list">
+        <div class="post_list" id="post">
             @foreach($posts as $post)
-                <div class="post">
+                <div class="">
                     <a href="{{ route('posts.show',$post['id']) }}">
                         <img src="{{ asset($post->path) }}" alt="">
+                    </a>
+                </div>
+            @endforeach
+        </div>
+        <div class="like_list hidden" id="like">
+            @foreach($likes as $like)
+                <div class="">
+                    <a href="{{ route('posts.show',$like['post_id']) }}">
+                        <img src="{{ asset($like->path) }}" alt="">
                     </a>
                 </div>
             @endforeach

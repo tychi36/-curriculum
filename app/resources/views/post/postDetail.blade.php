@@ -32,14 +32,37 @@
             </div>
         </div>
         <div class="comment_container">
+            @foreach($comments as $comment)
             <div class="user_info">
-                <img class="profile_img" src="" alt="">
-                <span class="username"></span>
+                <img class="profile_img" src="{{ asset(Auth::user()->image_path) }}" alt="">
+                <span class="username">{{ Auth::user()->name }}</span>
             </div>
-            <p></p>
-            <form action="{{ route('comments.index',Auth::id()) }}" method="post" class="comment">
+            <div class="">
+                <p>{{ $comment['comment'] }}</p>
+                @if($comment['user_id'] === Auth::id())
+                <button class="comment_edit button_none">編集</button>
+                <form action="{{ route('comments.destroy',$comment['id']) }}" method="post">
                 @csrf
-                <textarea name="comment" id="" cols="100" rows="3"></textarea>
+                @method('delete')
+                    <input type="hidden" value="{{$comment['post_id']}}" name="post_id">
+                    <button class="button_none" type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+                </form>
+                <form action="{{ route('comments.update',$comment['id']) }}" method="post" class="hidden" id="comment_edit">
+                    @method('patch')
+                    @csrf
+                    <input type="hidden" value="{{$post['id']}}" name="post_id">
+                    <textarea name="comment" id="" cols="100" rows="3">{{ $comment['comment'] }}</textarea>
+                    <button>送信</button>
+                </form>
+            @endif
+            </div>
+            @endforeach
+        </div>
+        <div class="comment_input">
+            <form action="{{ route('comments.index',Auth::id()) }}" method="post" class="">
+                @csrf
+                <input type="hidden" value="{{$post['id']}}" name="post_id">
+                <textarea name="comment" id="" cols="100" rows="3" placeholder="コメントを追加"></textarea>
                 <button>送信</button>
             </form>
         </div>

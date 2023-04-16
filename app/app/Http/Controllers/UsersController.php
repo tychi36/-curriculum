@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\like;
 use App\Http\Requests\MypageData;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,7 +53,12 @@ class UsersController extends Controller
     {
         $post = new Post;
         $posts = $post->where('user_id',Auth::id())->get();
-        return view('profile.profile',['posts' => $posts,]);
+        $like = new like;
+        $likes = $like->join('posts', 'likes.post_id', '=', 'posts.id')->get();
+        return view('profile.profile',[
+            'posts' => $posts,
+            'likes' => $likes,
+        ]);
     }
 
     /**
