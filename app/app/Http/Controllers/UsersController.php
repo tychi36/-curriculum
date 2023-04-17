@@ -51,11 +51,13 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+       
         $post = new Post;
         $posts = $post->where('user_id',Auth::id())->get();
         $like = new like;
         $likes = $like->join('posts', 'likes.post_id', '=', 'posts.id')->get();
         return view('profile.profile',[
+            'user' => $user,
             'posts' => $posts,
             'likes' => $likes,
         ]);

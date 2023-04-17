@@ -2,6 +2,10 @@
 @section('content')
 @can('admin')
 <main>
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
     <table class="host_table">
         <thead>
             <tr>
@@ -15,6 +19,7 @@
         </thead>
         <tbody>
             @foreach($users as $user)
+            
             <tr>
                 <td>{{ $user['id'] }}</td>
                 <td>{{ $user['name'] }}</td>

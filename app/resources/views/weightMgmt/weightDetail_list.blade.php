@@ -9,12 +9,12 @@
         <div>
             <span>
                 @if($dairy_prev)
-                <a href="{{ route('weight_mgmts.show',$dairy_prev['id']) }}"><img src="{{ asset('images/矢印ボタン右3.png') }}" alt=""><</a>
+                <a href="{{ route('weight_mgmts.show',$dairy_prev['id']) }}"><i class="fa fa-chevron-circle-left fa-2x"></i></a>
                 @endif
             </span>
             <span>
                 @if($dairy_next)
-                <a href="{{ route('weight_mgmts.show',$dairy_next['id']) }}"><img src="{{ asset('images/矢印ボタン左3.png') }}" alt="">></a>
+                <a href="{{ route('weight_mgmts.show',$dairy_next['id']) }}"><i class="fa fa-chevron-circle-right fa-2x"></i></a>
                 @endif
             </span>
         </div>

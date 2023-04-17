@@ -87,7 +87,7 @@
                                     <a class="nav-link active" aria-current="page" href="{{ route('users.show',Auth::id()) }}">マイページ</a>
                                 </li>
                             </ul>
-                            @if(Route::is('posts.index'))
+                            @if(!Route::is('posts.create','users.show','weight_mgmts.index','weight_mgmts.create','weight_mgmts.show','weight_mgmts.edit'))
                             <form class="d-flex" action="{{ route('search') }}" method="GET">
                                 @csrf
                                 <input class="form-control me-2 width_reset" placeholder="Search" aria-label="Search" type="search" name="search" value="@if (isset($search)) {{ $search }} @endif">

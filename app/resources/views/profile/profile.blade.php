@@ -2,18 +2,32 @@
 @section('content')
 <main>
     <div class="profile_container d-flex">
+        @if(Route::is('hosts.show'))
+        <div class="icon"><img class="rounded-circle w-75" src="{{ asset($user['image_path']) }}" alt=""></div>
+        @else
         <div class="icon"><img class="rounded-circle w-75" src="{{ asset(Auth::user()->image_path) }}" alt=""></div>
-       <div>
+        @endif
+        <div>
             <div class="name_container">
                 @if(Route::is('posts.show'))
                 <a class="edit_profile" href="{{ route('users.edit', Auth::id())}}">プロフィールを編集</a>
-                @else
-                <a class="edit_profile" href="{{ route('users.edit', Auth::id())}}">一覧へ戻る</a>
+                @elseif(Route::is('hosts.show'))
+                <a class="edit_profile" href="{{ route('hosts.index')}}">一覧へ戻る</a>
                 @endif
-                <div class="name">{{ Auth::user()->name }}</div>
+                @if(Route::is('hosts.show'))
+                <div class="name">{{ $user['name'] }}</div>
+                @else
+                <!-- <div class="name">{{ Auth::user()->name }}</div> -->
+                <div class="name">{{ $user['name'] }}</div>
+
+                @endif
             </div>
-        <p name="profile_text" class="profile_text">{{ Auth::user()->profile_text }}</p>
-       </div>
+            @if(Route::is('hosts.show'))
+            <p name="profile_text" class="profile_text">{{ $user['profile_text'] }}</p>
+            @else
+            <p name="profile_text" class="profile_text">{{ Auth::user()->profile_text }}</p>
+            @endif
+        </div>
     </div>
     <div>
         <div class="button_container">
@@ -22,6 +36,7 @@
         </div>
         <div class="post_list" id="post">
             @foreach($posts as $post)
+            
                 <div class="">
                     
                     <a href="{{ route('posts.show', $post['id']) }}">

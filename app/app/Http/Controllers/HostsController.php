@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Like;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,14 +60,14 @@ class HostsController extends Controller
     public function show($user)
     {
         
-        $users = User::where('id',$user)->first();
-        $posts = Post::where('user_id',$user)->first();
-        // dd($posts);
+        $posts = Post::where('user_id',$user)->get();
+        $likes = Like::join('posts', 'likes.post_id', '=', 'posts.id')->get();
+        
 
         return view('profile.profile',[
-            'user' => $users,
+            'user' => $user,
             'posts' => $posts,
-            // 'comments' => $comments,
+            'likes' => $likes,
         ]);
     }
 

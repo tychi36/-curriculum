@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use  App\Post;
 
 class User extends Authenticatable
 {
@@ -38,9 +39,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     //１対多
+    // public function post(){
+    //     return $this->belongsTo('App\Post', 'user_id', 'id');
+    // }
+    //テスト
     public function post(){
-        return $this->belongsTo('App\Post', 'user_id', 'id');
+        return $this->hasMany('App\Post', 'user_id','id');
     }
+
     public function comment(){
         return $this->belongsTo('App\Comment', 'user_id', 'id');
     }

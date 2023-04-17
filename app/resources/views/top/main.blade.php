@@ -6,11 +6,11 @@
     <div class="post_container">
     <!-- ユーザー情報 メイン-->
         <div class="user_link">
-            <a href="{{ route('users.show',Auth::id()) }}">
+            <a href="{{ route('users.show',$post['user_id']) }}">
                     <!-- 画像 -->
-                    <img class="profile_img" src="{{ asset(Auth::user()->image_path) }}" alt="">
+                    <img class="profile_img" src="{{ asset($post->user->image_path) }}" alt="">
                     <!-- 名前 -->
-                    <span class="username">{{ Auth::user()->name }}</span>
+                    <span class="username">{{ $post->user->name }}</span>
             </a>
             @if($like_model->like_exist(Auth::user()->id,$post->id))
             <p class="favorite-marke">

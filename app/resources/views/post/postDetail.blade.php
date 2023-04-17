@@ -21,7 +21,7 @@
             @endif
             <!-- 画像 -->
             <div class="user_info">
-                <img class="profile_img" src="{{ asset($user->image_path) }}" alt="">
+                <img class="profile_img" src="{{ asset($post->user->image_path) }}" alt="">
                 <span class="username">{{ $user['name'] }}</span>
             </div>
             <div class="img_wrap">
