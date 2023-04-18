@@ -2,8 +2,9 @@
 @section('content')
 @can('admin')
 <main>
-    <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="d-flex" action="{{ route('search_host') }}" method="GET">
+        @csrf
+        <input class="form-control me-2 width_reset" placeholder="Search" aria-label="Search" type="search" name="search" value="@if (isset($search)) {{ $search }} @endif">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <table class="host_table">

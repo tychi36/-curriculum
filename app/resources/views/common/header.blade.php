@@ -27,7 +27,7 @@
     <body>
         <div class="container">
             <div class="sidebar">
-                <h1 class="fs-1 title"><a href="#">TITLE</a></h1>
+                <h1 class="fs-1 title"><a href="{{ route('posts.index') }}">TITLE</a></h1>
                     <div class="">
                         @can('admin')
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">

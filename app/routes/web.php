@@ -15,6 +15,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\WeightMgmtsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HostsController;
 
 use Illuminate\Support\Facades\Route;
 //User
@@ -22,6 +23,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth','can:admin']], function () {
     Route::resource('hosts','HostsController');
+    Route::get('/search_host',[HostsController::class, 'search'])->name('search_host');
     });
 
 Route::group(['middleware' => 'auth','can:user'], function () {

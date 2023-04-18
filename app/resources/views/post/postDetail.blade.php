@@ -21,6 +21,7 @@
             @endif
             <!-- 画像 -->
             <div class="user_info">
+                
                 <img class="profile_img" src="{{ asset($post->user->image_path) }}" alt="">
                 <span class="username">{{ $user['name'] }}</span>
             </div>
@@ -31,16 +32,15 @@
                 </div>
             </div>
         </div>
-        @if(Route::is('post.show'))
         <div class="comment_container">
             @foreach($comments as $comment)
             <div class="user_info">
-                <img class="profile_img" src="{{ asset(Auth::user()->image_path) }}" alt="">
-                <span class="username">{{ Auth::user()->name }}</span>
+                <img class="profile_img" src="{{ asset($user['image_path']) }}" alt="">
+                <span class="username">{{ $user['name'] }}</span>
             </div>
             <div class="">
                 <p>{{ $comment['comment'] }}</p>
-                @if($comment['user_id'] === Auth::id())
+                @if($comment['user_id'] === Auth::id() || Auth::user()->role === 1)
                 <button class="comment_edit button_none">編集</button>
                 <form action="{{ route('comments.destroy',$comment['id']) }}" method="post">
                 @csrf
@@ -55,7 +55,7 @@
                     <textarea name="comment" id="" cols="100" rows="3">{{ $comment['comment'] }}</textarea>
                     <button>送信</button>
                 </form>
-            @endif
+                @endif
             </div>
             @endforeach
         </div>
@@ -66,8 +66,7 @@
                 <textarea name="comment" id="" cols="100" rows="3" placeholder="コメントを追加"></textarea>
                 <button>送信</button>
             </form>
-        </div>
-        @endif
+            </div>
     </div>
 </main>
 @endsection

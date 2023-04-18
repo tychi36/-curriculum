@@ -10,11 +10,16 @@
             <span>
                 @if($dairy_prev)
                 <a href="{{ route('weight_mgmts.show',$dairy_prev['id']) }}"><i class="fa fa-chevron-circle-left fa-2x"></i></a>
+                @elseif(!$dairy_prev)
+                <a href=""><i class="fa fa-chevron-circle-left fa-2x" style="color: gainsboro;"></i></a>
                 @endif
             </span>
             <span>
                 @if($dairy_next)
                 <a href="{{ route('weight_mgmts.show',$dairy_next['id']) }}"><i class="fa fa-chevron-circle-right fa-2x"></i></a>
+                @else
+                <a href=""><i class="fa fa-chevron-circle-right fa-2x" style="color: gainsboro;"></i></a>
+
                 @endif
             </span>
         </div>

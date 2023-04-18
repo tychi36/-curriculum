@@ -51,11 +51,11 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-       
         $post = new Post;
         $posts = $post->where('user_id',Auth::id())->get();
+        
         $like = new like;
-        $likes = $like->join('posts', 'likes.post_id', '=', 'posts.id')->get();
+        $likes = $like->join('posts', 'likes.post_id', '=', 'posts.id')->where('likes.user_id',$user['id'])->get();
         return view('profile.profile',[
             'user' => $user,
             'posts' => $posts,
@@ -90,6 +90,10 @@ class UsersController extends Controller
         if($request->file('image')){
         $dir = 'images';
         $file_name = $request->file('image')->getClientOriginalName();
+        //反応しない
+        if(!$file_name){
+            $file_name = 'マッチョのフリーアイコン3.jpeg';
+        }
         $request->file('image')->storeAs('public/' . $dir, $file_name);
         $user->image_path = 'storage/' . $dir . '/' . $file_name;
         }

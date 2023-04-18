@@ -59,13 +59,13 @@ class HostsController extends Controller
      */
     public function show($user)
     {
-        
+        $users = User::where('id',$user)->first();
         $posts = Post::where('user_id',$user)->get();
-        $likes = Like::join('posts', 'likes.post_id', '=', 'posts.id')->get();
+        $likes = Like::join('posts', 'likes.post_id', '=', 'posts.id')->where('likes.user_id',$user)->get();
         
 
         return view('profile.profile',[
-            'user' => $user,
+            'user' => $users,
             'posts' => $posts,
             'likes' => $likes,
         ]);
@@ -107,4 +107,24 @@ class HostsController extends Controller
         $users->delete();
         return redirect(route('hosts.index'));
     }
+
+    public function search(Request $request){
+        $users = User::paginate(20);
+        $search = $request->input('search');
+        $query = User::query();
+        $like_model = new Like;
+        if($search){
+         $spaceConversion = mb_convert_kana($search, 's');
+         $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+         foreach($wordArraySearched as $value){
+             $query->where('role', [11,100])->where('name', 'like', '%'.$value.'%');
+         }
+         $users = $query->paginate(20);
+        }
+        return view('host.host_userSearch',[
+         'users' => $users,
+         'search' => $search,
+         'like_model'=>$like_model,
+        ]);
+     }
 }
