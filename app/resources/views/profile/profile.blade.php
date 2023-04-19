@@ -1,8 +1,8 @@
 @extends('common.header')
 @section('content')
-<main>
-    <div class="profile_container d-flex">
-        <div class="icon"><img class="rounded-circle w-75" src="{{ asset($user['image_path']) }}" alt=""></div>
+<main class="">
+    <div class="profile_container">
+        <div class="icon"><img class="rounded-circle profile_img_mypage" src="{{ asset($user['image_path']) }}" alt=""></div>
         <div>
             <div class="name_container">
                 @if($user['id'] === Auth::id())
@@ -17,7 +17,7 @@
             <p name="profile_text" class="profile_text">{{ $user['profile_text'] }}</p>
         </div>
     </div>
-    <div>
+    <div class="">
         <div class="button_container">
             <button class="posts_button">投稿一覧</button>
             <button class="likes_button">いいね一覧</button>

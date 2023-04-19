@@ -18,35 +18,50 @@ a{
 }
 a:hover{
     text-decoration: none;
+    color: #000;
 }
 .loved i {
     color: red !important;
 }
-
 /* メインページ */
+.container{
+    width: 80%;
+}
 .sidebar{
     margin-right: 50px;
     margin-top: 30px;
 }
 .profile_img{
     width: 50px;
+    height: 50px;
+    object-fit: cover;
     margin-right: 5px;
     border-radius: 50%;
     margin-left: 5px;
 }
+.profile_img_mypage{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+/* .icon{
+   
+} */
 .username{
     font-size: 15px;
+    font-weight: bold;
 }
 .user_link{
     display: flex;
     justify-content: space-between;
+    margin: 10px;
+}
+.user_link a{
+    display: flex;
     align-items: center;
 }
 .favorite-marke{
     margin-bottom: none !important;
-}
-.like{
-    margin: 15px;
 }
 .form-control.me-2.width_reset{
     width: auto;
@@ -56,29 +71,42 @@ a:hover{
 }
 .img_wrap{
     display: flex;
-    gap: 30px;
-    margin: 0 auto;
 }
-.image-wrap img {
-    max-width: 100px;
-    height: 300px;
-    object-fit: cover; /* width, heightといっしょに使います */
+.img_wrap img {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+}
+.img_wrap div{
+    width: 100%;
 }
 .post_container{
     margin-bottom: 30px;
     border: 0.5px solid #666;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 .post_text{
-    text-align: right;
+    text-align: start;
+    
+}
+.post_text_container{
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 .loved i {
     color: red !important;
+}
+.img_radius{
+    border-radius: 0px 0px 0px 5px;
 }
 
 /* マイページ */
 .profile_container{
     margin-bottom: 10px;
+    display: flex;
     align-items: center;
 }
 .name{
@@ -95,6 +123,9 @@ a:hover{
 .post_list{
     display: flex;
     flex-wrap: wrap;
+}
+.post_text{
+   margin: 0 10px;
 }
 .like_list{
     display: flex;
@@ -154,9 +185,13 @@ a:hover{
     padding: 30px;
     border: 1px solid #ced4da;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 .weight_contents_container .weight_contents{
     width: 50%;
+}
+.weight_list,.goal{
+    font-weight: bold;
 }
 .weight_list *{
     height: 150px;
@@ -166,6 +201,19 @@ a:hover{
     display: flex;
     justify-content: space-between;
     list-style: none;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.goal{
+    margin-left: 20px;
+    font-size: 20px;
+}
+.nav-container div{
+    justify-content: space-between;
+    display: flex;
+}
+.arrow_color{
+    color: #CC3333;
 }
 .nav-menu{
     display: flex;
@@ -188,12 +236,32 @@ a:hover{
     display: flex;
     align-items: center;
 }
+.user_info_margin{
+    margin: 10px;
+}
 .button_none{
     border: none;
     background: transparent;
 }
 .button_container{
     display: flex;
+}
+.border_none{
+    border: none;
+    background: none;
+    resize: none;
+}
+.comment{
+    margin-bottom: 10px;
+}
+.comment_container{
+    padding: 10px;
+}
+.comment_input{
+    padding: 0 10px;
+}
+.add_comment{
+    padding: 10px 0;
 }
 /* 管理画面 */
 .host_table{

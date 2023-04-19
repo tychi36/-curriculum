@@ -8,7 +8,7 @@
         <div class="user_link">
             <a href="{{ route('users.show',$post['user_id']) }}">
                     <!-- 画像 -->
-                    <img class="profile_img" src="{{ asset($post->user->image_path) }}" alt="">
+                    <div><img class="profile_img" src="{{ asset($post->user->image_path) }}" alt=""></div>
                     <!-- 名前 -->
                     <span class="username">{{ $post->user->name }}</span>
             </a>
@@ -25,10 +25,12 @@
             @endif
         </div>
         <a href="{{ route('posts.show',$post['id']) }}">
-            <div class="img_wrap">
-                <img src="{{ asset($post->path) }}" alt="">
-                <div class="">
-                    <p class="post_text">{{ $post['text'] }}</p>
+            <div class="img_container">
+                <div class="img_wrap">
+                    <img src="{{ asset($post->path) }}" alt="" class="img_radius">
+                    <div class="post_text_container">
+                        <p class="post_text">{{ $post['text'] }}</p>
+                    </div>
                 </div>
             </div>
         </a>

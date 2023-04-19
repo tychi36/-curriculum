@@ -36,6 +36,7 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
+        
         $comment = new Comment;
         $comment->user_id = Auth::id();
         $comment->post_id = $request->post_id;
@@ -74,10 +75,11 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $comment)
     {
+        dd($comment);
         $comment = Comment::find($id);
-        $comment->post_id = $request->post_id;
+        dd($comment);
         $comment->comment = $request->comment;
         $comment->save();
 

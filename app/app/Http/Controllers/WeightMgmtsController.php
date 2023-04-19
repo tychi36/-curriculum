@@ -32,6 +32,8 @@ class WeightMgmtsController extends Controller
                     $period = strtotime($goal['period']);
                     $commit = ($period - $now) / 86400;
 
+                    $weight = $dairy['weight'] -  $goal['goal'];
+
                     $dairy_prev = Weight_mgmt::where('user_id',Auth::id())->where('date','<',$dairy['date'])->orderBy('date','desc')->first();
                     $dairy_next = Weight_mgmt::where('user_id',Auth::id())->where('date','>',$dairy['date'])->orderBy('date','asc')->first();
 
@@ -39,6 +41,7 @@ class WeightMgmtsController extends Controller
                         'dairy' => $dairy,
                         'goal' => $goal,
                         'commit' => $commit,
+                        'weight' => $weight,
                         'dairy_prev' => $dairy_prev,
                         'dairy_next' => $dairy_next,
                     ]);
@@ -92,6 +95,8 @@ class WeightMgmtsController extends Controller
         $now = strtotime($dairy['date']);
         $period = strtotime($goal['period']);
         $commit = ($period - $now) / 86400;
+        $weight = $dairy['weight'] -  $goal['goal'];
+        
         $dairy_prev = Weight_mgmt::where('user_id',Auth::id())->where('date','<',$dairy['date'])->orderBy('date','desc')->first();
         $dairy_next = Weight_mgmt::where('user_id',Auth::id())->where('date','>',$dairy['date'])->orderBy('date','asc')->first();
 
@@ -100,6 +105,7 @@ class WeightMgmtsController extends Controller
             'dairy' => $dairy,
             'goal' => $goal,
             'commit' => $commit,
+            'weight' => $weight,
             'dairy_prev' => $dairy_prev,
             'dairy_next' => $dairy_next,
         ]);

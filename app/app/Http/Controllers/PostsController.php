@@ -80,10 +80,11 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
-    {   
+    {  
+       
         $user = User::where('id',$post['user_id'])->first();
-        $comments = Comment::where('post_id', $post['id'])->get();
-        // dd($comments);
+        $comments = Comment::join('users', 'comments.user_id', '=', 'users.id')->where('comments.post_id',$post['id'])->get();
+        // $comments = Comment::join('posts', 'likes.post_id', '=', 'posts.id')->where('likes.user_id',$user)->get();
         return view('post.postDetail',[
             'post' => $post,
             'user' => $user,
