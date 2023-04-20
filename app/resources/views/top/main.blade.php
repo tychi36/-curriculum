@@ -1,7 +1,7 @@
 @extends('common.header')
 @section('content')
 @can('user')
-<main class="">
+<main>
     @foreach($posts as $post)
     <div class="post_container">
     <!-- ユーザー情報 メイン-->

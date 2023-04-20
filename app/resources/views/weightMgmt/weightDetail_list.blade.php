@@ -4,14 +4,14 @@
     <h3>目標一覧</h3>
     <nav class="nav-container">
         <div>
-            <span>
+            <span class="left">
                 @if($dairy_prev)
                 <a href="{{ route('weight_mgmts.show',$dairy_prev['id']) }}"><i class="fa fa-chevron-circle-left fa-2x arrow_color"></i></a>
                 @elseif(!$dairy_prev)
                 <a href=""><i class="fa fa-chevron-circle-left fa-2x" style="color: gainsboro;"></i></a>
                 @endif
             </span>
-            <span>
+            <span class="right">
                 @if($dairy_next)
                 <a href="{{ route('weight_mgmts.show',$dairy_next['id']) }}"><i class="fa fa-chevron-circle-right fa-2x arrow_color"></i></a>
                 @else

@@ -58,7 +58,7 @@
                 <form action="{{ route('comments.update',$comment['id']) }}" method="post" class="hidden" id="comment_edit">
                     @method('patch')
                     @csrf
-                    <input type="hidden" value="{{$post['id']}}" name="post_id">
+                    <input type="hidden" value="{{$comment['id']}}" name="post_id">
                     <textarea name="comment" id="" cols="100" rows="3">{{ $comment['comment'] }}</textarea>
                     <button>送信</button>
                 </form>
@@ -67,7 +67,7 @@
            
         </div>
         <div class="comment_input">
-            <form action="{{ route('comments.update',$comment['post_id']) }}" method="post" class="d-flex align-items-center justify-content-between">
+            <form action="{{ route('comments.store') }}" method="post" class="d-flex align-items-center justify-content-between">
                 @csrf
                 <input type="hidden" value="{{$post['id']}}" name="post_id">
                 <textarea class="border_none add_comment" name="comment" id="" cols="90" rows="1" placeholder="コメントを追加"></textarea>
