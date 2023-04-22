@@ -21,7 +21,7 @@ class WeightMgmtsController extends Controller
     public function index()
     {
             //目標があるかないか判定
-            $data = DB::table('weight_goals')->exists();
+            $data = DB::table('weight_goals')->where('user_id',Auth::id())->exists();
             if($data){
                 $mgmt = DB::table('weight_mgmts')->where('user_id',Auth::id())->exists();
                 //進捗のデータがあるかないか
@@ -47,7 +47,10 @@ class WeightMgmtsController extends Controller
                     ]);
 
                 }else{
-                    return view('weightMgmt.weightRegister');
+                    $goal = Weight_goal::where('user_id',Auth::id())->first();
+                    return view('weightMgmt.weightRegister',[
+                        'goal' => $goal,
+                    ]);
                 }
                 
             }else{
@@ -62,7 +65,11 @@ class WeightMgmtsController extends Controller
      */
     public function create()
     {
-        return view('weightMgmt.weightRegister');
+        $goal = Weight_goal::where('user_id',Auth::id())->first();
+       
+        return view('weightMgmt.weightRegister',[
+            'goal' => $goal,
+        ]);
     }
 
     /**
@@ -119,9 +126,11 @@ class WeightMgmtsController extends Controller
      */
     public function edit($weight_mgmt)
     {
+        $goal = Weight_goal::where('user_id',Auth::id())->first();
         $weight_mgmt = Weight_mgmt::find($weight_mgmt);
         return view('weightMgmt.weightUpdate',[
             'weight_mgmt' => $weight_mgmt,
+            'goal' => $goal,
 
         ]);
     }

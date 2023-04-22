@@ -83,7 +83,7 @@ class PostsController extends Controller
     {  
        
         $user = User::where('id',$post['user_id'])->first();
-        $comments = Comment::join('users', 'comments.user_id', '=', 'users.id')->where('comments.post_id',$post['id'])->get();
+        $comments = Comment::select('comments.id as comment_id','comments.comment','users.id as users_Id', 'users.name as user_name', 'users.image_path as user_image')->join('users', 'comments.user_id', '=', 'users.id')->where('comments.post_id',$post['id'])->get();
         return view('post.postDetail',[
             'post' => $post,
             'user' => $user,
@@ -132,9 +132,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        $posts = Post::find();
+        $posts = Post::find($id);
         $posts->delete();
         return redirect(route('posts.index'));
     }

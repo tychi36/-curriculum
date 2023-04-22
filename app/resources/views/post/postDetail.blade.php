@@ -37,17 +37,20 @@
             <div class="comment">
                 <div class="user_info justify-content-between">
                     <div>
-                        <img class="profile_img" src="{{ asset($user['image_path']) }}" alt="">
-                        <span class="username">{{ $comment['name'] }}</span>
+                    
+                        <a href="{{ route('users.show',$comment['users_Id']) }}">
+                            <img class="profile_img" src="{{ asset($comment['user_image']) }}" alt="">
+                            <span class="username">{{ $comment['user_name'] }}</span>
+                        </a>
                     </div>
                     <div class="d-flex">
-                        @if($comment['user_id'] === Auth::id() || Auth::user()->role === 1)
+                        @if($comment['users_Id'] === Auth::id() || Auth::user()->role === 1)
                         <div class="d-flex">
                             <button class="comment_edit button_none mr-2">編集</button>
-                            <form action="{{ route('comments.destroy',$comment['id']) }}" method="post">
+                            <form action="{{ route('comments.destroy',$comment['comment_id']) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <input type="hidden" value="{{$comment['post_id']}}" name="post_id">
+                                <input type="hidden" value="{{$post['id']}}" name="post_id">
                                 <button class="button_none" type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
                             </form>
                         </div>
@@ -55,10 +58,10 @@
                     </div>
                 </div>
                 <p>{{ $comment['comment'] }}</p>
-                <form action="{{ route('comments.update',$comment['id']) }}" method="post" class="hidden" id="comment_edit">
+                <form action="{{ route('comments.update',$comment['comment_id']) }}" method="post" class="comment_editform hidden">
                     @method('patch')
                     @csrf
-                    <input type="hidden" value="{{$comment['id']}}" name="post_id">
+                    <input type="hidden" value="{{$post['id']}}" name="post_id">
                     <textarea name="comment" id="" cols="100" rows="3">{{ $comment['comment'] }}</textarea>
                     <button>送信</button>
                 </form>
@@ -67,13 +70,16 @@
            
         </div>
         <div class="comment_input">
-            <form action="{{ route('comments.store') }}" method="post" class="d-flex align-items-center justify-content-between">
+            <form action="{{ route('comments.store') }}" method="post" class="d-flex align-items-center justify-content-center">
                 @csrf
                 <input type="hidden" value="{{$post['id']}}" name="post_id">
                 <textarea class="border_none add_comment" name="comment" id="" cols="90" rows="1" placeholder="コメントを追加"></textarea>
-                <button class="border_none">投稿</button>
+                <button class="border_none">投稿する</button>
             </form>
         </div>
     </div>
 </main>
+<script>
+
+</script>
 @endsection

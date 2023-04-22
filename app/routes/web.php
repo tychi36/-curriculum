@@ -46,8 +46,8 @@ Route::group(['middleware' => 'auth','can:user'], function () {
 });
 //権限わけのためのルート
 Route::get('/',[HomeController::class, 'index']);
-//search
-Route::get('/search',[DisplayController::class, 'search'])->name('search');
+// //search
+// Route::get('/search',[DisplayController::class, 'search'])->name('search');
 
 
 // Route::get('profile', function () {

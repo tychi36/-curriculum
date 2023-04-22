@@ -1,13 +1,16 @@
 @extends('common.header')
 @section('content')
 <main class="">
+    <div>
+        <button class="button_none btn btn-link prev-button"onclick="history.back()">＜ 戻る</button>
+    </div>
     <div class="profile_container">
         <div class="icon"><img class="rounded-circle profile_img_mypage" src="{{ asset($user['image_path']) }}" alt=""></div>
         <div class="profile">
             @if($user['id'] === Auth::id())
-            <a class="edit_profile" href="{{ route('users.edit', $user['id'])}}">プロフィールを編集</a>
+            <a class="profile_button" href="{{ route('users.edit', $user['id'])}}">プロフィールを編集</a>
             @elseif(Route::is('hosts.show'))
-            <a class="edit_profile" href="{{ route('hosts.index')}}">一覧へ戻る</a>
+            <a class="profile_button" href="{{ route('hosts.index')}}">一覧へ戻る</a>
             @endif
             <div class="name">{{ $user['name'] }}</div>
             <p name="profile_text" class="profile_text">{{ $user['profile_text'] }}</p>

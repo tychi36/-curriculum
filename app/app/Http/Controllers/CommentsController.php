@@ -77,13 +77,12 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $comment)
     {
-        dd($comment);
-        $comment = Comment::find($id);
-        dd($comment);
+        $comment = Comment::find($comment);
+        
         $comment->comment = $request->comment;
         $comment->save();
 
-        return redirect(route('posts.show',$comment->post_id));
+        return redirect(route('posts.show',$request->post_id));
     }
 
     /**
@@ -92,10 +91,9 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
-    {
-        // dd($request);
-        $comments = Comment::find($id);
+    public function destroy(Request $request, $comment)
+    {  
+        $comments = Comment::find($comment);
         $comments->delete();
         return redirect(route('posts.show',$request->post_id));
     }

@@ -1,6 +1,8 @@
 $(function(){
     $('.comment_edit').on('click',function(){
-        $('#comment_edit').toggleClass('open');
+        let edit = $(this).parent().parent().parent().next().next();   
+        $(edit).toggleClass('hidden');
+        
     });
 
     $('.likes_button').on('click',function(){
@@ -32,4 +34,6 @@ $(function(){
             $(this).addClass('.not_show');
         }
     });
+
+
 });

@@ -29,7 +29,8 @@
                 <div class="img_wrap">
                     <img src="{{ asset($post->path) }}" alt="" class="img_radius">
                     <div class="post_text_container">
-                        <p class="post_text">{{ $post['text'] }}</p>
+                        <p class="post_text">{{ Str::limit($post['text'], 100, '...続きを読む') }}
+                        </p>
                     </div>
                 </div>
             </div>
