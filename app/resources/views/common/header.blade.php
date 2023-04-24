@@ -29,7 +29,11 @@
     <body>
         <div class="container">
             <div class="sidebar">
+                @if(Route::is('hosts.index','hosts.show'))
+                <h1 class="fs-1 title"><a href="{{ route('hosts.index') }}">Poweeer<i class="fas fa-solid fa-dumbbell fa-2xs titile_logo"></i></a></h1>
+                @else
                 <h1 class="fs-1 title"><a href="{{ route('posts.index') }}">Poweeer<i class="fas fa-solid fa-dumbbell fa-2xs titile_logo"></i></a></h1>
+                @endif
                     <div class="">
                         @can('admin')
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">

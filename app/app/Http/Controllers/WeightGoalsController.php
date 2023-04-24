@@ -68,7 +68,6 @@ class WeightGoalsController extends Controller
     public function edit($weight_goal)
     {
         $goal = Weight_goal::find($weight_goal);
-        // dd($goal);
         return view('weightMgmt.weightGoal_edit',[
             'goal' => $goal,
         ]);
